@@ -1,0 +1,35 @@
+# Ad Radar: MCPize deployment manifest
+# Pricing, logo and marketplace visibility are set in the MCPize dashboard.
+version: 1
+name: ad-radar
+description: >-
+  Competitor ad intelligence for AI agents. Search live Facebook, Instagram and
+  Google ads by keyword or website, audit any advertiser's current creative, and
+  watch a competitor for new launches, stopped ads and rewritten copy, with
+  real ad copy, landing pages and run length from the ad libraries.
+
+runtime: typescript
+entry: dist/index.js
+
+build:
+  install: npm ci
+  command: npm run build
+
+startCommand:
+  type: http
+  command: node
+  args:
+    - dist/index.js
+
+# Publisher infrastructure credentials: shared by every subscriber, never
+# requested from the end user.
+secrets:
+  - name: APIFY_TOKEN
+    required: true
+    description: Apify API token that runs the Meta Ad Library scraper.
+  - name: STATE_STORE_NAME
+    required: false
+    description: Apify key-value store holding watch snapshots. Defaults to ad-radar-state.
+  - name: AD_RADAR_ACTOR_ID
+    required: false
+    description: Actor id behind the tools. Defaults to the Meta Ad Library scraper.

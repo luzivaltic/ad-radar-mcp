@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.luzivaltic/ad-radar",
+  "title": "Ad Radar",
+  "description": "Live Facebook, Instagram and Google ads: copy, landing page, days running, new/stopped diffs.",
+  "version": "1.0.0",
+  "websiteUrl": "https://mcpize.com/mcp/ad-radar",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://ad-radar.mcpize.run/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "MCPize API key as Bearer token. A free tier of 100 calls per month is included; keys are issued at https://mcpize.com/mcp/ad-radar.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
