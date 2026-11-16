@@ -6,7 +6,30 @@ which platforms each ad runs on, and how many days it has been live.
 
 Ad Radar reads the Meta Ad Library and the Google Ads Transparency Center, so
 it covers every advertiser running ads there, not only the ones you already
-know. One row per ad. No Facebook, Google or Apify account, and no API key.
+know. One row per ad. No Facebook, Google or Apify account: the server holds
+that access, and you only bring your Ad Radar key.
+
+## Connect
+
+The hosted server is live at **https://ad-radar.mcpize.run/mcp** (streamable
+HTTP). Get a key and a free tier of 100 calls a month at
+https://mcpize.com/mcp/ad-radar, then point your client at it:
+
+```json
+{
+  "mcpServers": {
+    "ad-radar": {
+      "type": "http",
+      "url": "https://ad-radar.mcpize.run/mcp",
+      "headers": { "Authorization": "Bearer YOUR_AD_RADAR_KEY" }
+    }
+  }
+}
+```
+
+This repository is the source of that server. `npm ci && npm run build && npm start`
+runs the same code locally with `APIFY_TOKEN` set; the MCPize gateway is only
+needed for auth and billing.
 
 ## What you can ask
 
